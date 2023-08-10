@@ -91,8 +91,22 @@ func execSqlFile(db *sql.DB, filePath string) error {
 func RunMigration() { // TODO rewrite to ordinary migration
 	db := openDB()
 	defer db.Close()
-	err := execSqlFile(db, "database/migration/PostgreSQL/Migrations_00_Create_Tables/0001_create.sql")
+	err := execSqlFile(db, "database/postgresql/migration/Migrations_00_Create_Tables/0001_create.sql")
 	if err != nil {
 		panic(err)
 	}
 }
+
+// with user_data as (
+// 	select
+// 		extract(timezone from u.created) as tz,
+// 		extract(timezone_hour from u.created) as h,
+// 		extract(timezone_minute from u.created) as m
+// 		from pills.users u)
+// select  tz, h, m -- to_date('01-01-2023','dd-mm-yyyy') at time zone user_data.tz
+// from user_data
+
+// ;
+
+//  insert into pills.pills (user_id, pill_name, pill_time)
+//  values (1109316287, "test", to_date('01-01-2023','dd-mm-yyyy') at time zone user_data.tz)

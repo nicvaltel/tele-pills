@@ -17,6 +17,6 @@ func main() {
 		log.Panic(fmt.Sprintf("Error loading %s file.\n", envFile))
 	}
 
-	// database.RunMigration()
+	// postgresql.RunMigration()
 	bot.RunBot()
 }

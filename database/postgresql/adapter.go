@@ -25,11 +25,24 @@ func (repo PostgresRepo) UserIsNewcomer(chatId int64) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	if !rows.Next() {
-		return false, nil
-	} else {
-		return true, nil
+	return !rows.Next(), nil
+}
+
+func (repo PostgresRepo) SaveReminder(chatId int64, pillName string, hour uint8, min uint8) error {
+	isNewcomer, err := repo.UserIsNewcomer(chatId)
+	if err != nil {
+		return err
 	}
+	if isNewcomer {
+		return fmt.Errorf("SaveReminder error: userId %d doesn't exist in Repo", chatId)
+	}
+
+	_, err = repo.db.Exec("INSERT INTO pills.pills (user_id, pill_name, pill_hour, pill_min) VALUES ($1, $2, $3, $4)",
+		chatId, pillName, hour, min)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (repo PostgresRepo) SaveUser(chatId int64, username string, firstName string, lastName string, timestamp time.Time) error {

@@ -5,8 +5,8 @@ import (
 )
 
 // type BotApp interface {
-// 	// RunBotApp()
-// 	ProcessMessage()
+// 	ProcessMessage(repo Repo, update tgbotapi.Update) error
+// 	sendAddPillButton()
 // }
 
 type Repo interface {
@@ -14,4 +14,5 @@ type Repo interface {
 	UserIsNewcomer(chatId int64) (bool, error)
 	SaveUser(chatId int64, username string, firstName string, lastName string, timestamp time.Time) error
 	SaveMessage(chatId int64, message string, timestamp time.Time) error
+	SaveReminder(chatId int64, pillName string, hour uint8, min uint8) error
 }

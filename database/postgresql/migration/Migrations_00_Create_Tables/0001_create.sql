@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS pills.messages (
 CREATE TABLE IF NOT EXISTS pills.pills (
   user_id bigint not null,
   pill_name text not null,
-  pill_time time with time zone not null,
+  pill_hour int not null,
+  pill_min int not null,
   FOREIGN KEY (user_id) REFERENCES pills.users(user_id)
 );
 
