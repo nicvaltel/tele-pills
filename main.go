@@ -17,7 +17,6 @@ func main() {
 		log.Panic(fmt.Sprintf("Error loading %s file.\n", envFile))
 	}
 
-	// bot.RunHelloWorldBot()
-	bot.RunMigration()
-	// bot.AAA()
+	// database.RunMigration()
+	bot.RunBot()
 }
