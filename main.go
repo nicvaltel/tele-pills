@@ -2,6 +2,7 @@ package main
 
 import (
 	"Pills/bot"
+	"Pills/database/postgresql"
 	"fmt"
 	"log"
 
@@ -17,6 +18,7 @@ func main() {
 		log.Panic(fmt.Sprintf("Error loading %s file.\n", envFile))
 	}
 
-	// postgresql.RunMigration()
+	postgresql.RunMigration("database/postgresql/migration/migration.sql", "database/postgresql/migration/migration.md5")
 	bot.RunBot()
+
 }

@@ -12,12 +12,3 @@ var menuKeyboard = tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButton("YYY"),
 	),
 )
-
-// var bbb = tgbotapi.NewInlineKeyboardButtonData("Добавить напоминание", "add_reminder")
-
-// msg := tgbotapi.NewMessage(chatId, "Добавить напоминание:")
-// 	button := tgbotapi.NewInlineKeyboardButtonData("Добавить напоминание", "add_reminder")
-// 	inlineKeyboard := tgbotapi.NewInlineKeyboardMarkup(
-// 		tgbotapi.NewInlineKeyboardRow(button),
-// 	)
-// 	msg.ReplyMarkup = inlineKeyboard
